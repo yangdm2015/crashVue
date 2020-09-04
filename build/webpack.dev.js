@@ -10,13 +10,30 @@ const common = require('./webpack.base.js');
 const path = require('path');
 const timeDelay = 20;
 const timeDelayInMs = timeDelay * 1000;
+const fs = require('fs');
+const bodyParser = require('body-parser');
+const apiMocker = require('webpack-api-mocker');
 
 module.exports = merge(common, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: '../dist',
-        before: function(app, server) {
-            app.get('/delay/rsp', function(req, res) {
+        before: function (app, server) {
+            apiMocker(app, path.resolve('build/api.js'));
+            // app.use(bodyParser.json());
+            // app.get('/sw-report-crash', (req, res) => {
+            //     res.header(
+            //         'Content-Type',
+            //         'application/javascript; charset=UTF-8'
+            //     );
+            //     res.header('Service-Worker-Allowed', '/');
+            //     let sw = fs.readFileSync('src/serviceWorker/sw.js');
+            //     res.send(sw);
+            // });
+            // app.use(bodyParser.json()).post('/crash/report', (req, res) => {
+            //     console.log('in crash/report', req.body);
+            // });
+            app.get('/delay/rsp', function (req, res) {
                 let delay = 20;
                 try {
                     // console.log('req.query = ', req.query)
@@ -24,17 +41,17 @@ module.exports = merge(common, {
                     // console.log('typeof req.query.params = ', typeof req.query.params)
                     // console.log('req.query.params.delay = ', req.query.params.delay)
                     delay = JSON.parse(req.query.params).delay;
-                } catch (error) {}
+                } catch (error) { }
                 // console.log('delay = ', delay)
                 setTimeout(() => {
                     res.json({ custom: 'response' });
                 }, delay * 1000);
             });
 
-            app.get('/immediate/rsp', function(req, res) {
+            app.get('/immediate/rsp', function (req, res) {
                 res.json({ custom: 'response' });
             });
-            app.post('/immediate/post/rsp', function(req, res) {
+            app.post('/immediate/post/rsp', function (req, res) {
                 res.json({ custom: 'response' });
             });
         },

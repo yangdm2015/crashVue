@@ -81,7 +81,7 @@ module.exports = {
             // },
             {
                 from: path.resolve(__dirname, '../src/serviceWorker/'),
-                to: 'js',
+                to: '',
             },
         ]),
 

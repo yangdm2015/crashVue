@@ -37,19 +37,5 @@
         <!-- 引入组件库 -->
         <script src="https://unpkg.com/element-ui@2.4.4/lib/index.js"></script>
     </body>
-    <script>
-        if ('serviceWorker' in navigator) {
-            console.log('window = ', window);
-            window.addEventListener('load', () => {
-                navigator.serviceWorker
-                    .register('/js/sw.js')
-                    .then(registration => {
-                        console.log('service-worker registed');
-                    })
-                    .catch(error => {
-                        console.log('service-worker registed error');
-                    });
-            });
-        }
-    </script>
+    <script></script>
 </html>

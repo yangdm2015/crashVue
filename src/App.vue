@@ -7,15 +7,13 @@
  -->
 <template>
     <div id="app">
-        <a
+        <!-- <a
             class="github-fork-ribbon right-top"
             href="https://github.com/zxpsuper/createVue"
             title="Fork me on GitHub"
-        >Fork me on GitHub</a>
+        >Fork me on GitHub</a>-->
         <img src="./assets/logo.png" alt />
-        <el-button @click="getImmediateRsp">发送同域名请求</el-button>
-        <el-button @click="cross">发送跨域名请求</el-button>
-        <el-button @click="beacon">发送同域名beacon请求</el-button>
+
         <div class="flex space-around router">
             <router-link to="/introduce">Introduce</router-link>
             <router-link to="/me">About me</router-link>
@@ -24,32 +22,15 @@
     </div>
 </template>
 <script>
-import HelloWorld from '@/components/HelloWorld.vue';
+
 import { mapActions } from 'vuex';
-// import { Promise } from 'q';
-// if ('serviceWorker' in navigator) {
-//     window.addEventListener('load', () => {
-//         navigator.serviceWorker
-//             .register('./serviceWorker/sw.js')
-//             .then(registration => {
-//                 console.log('service-worker registed');
-//             })
-//             .catch(error => {
-//                 console.log('service-worker registed error');
-//             });
-//     });
-// }
 export default {
     name: 'app',
     data() {
         return {};
     },
-    components: {
-        HelloWorld,
-    },
     created() {
-        console.log(process.env.NODE_ENV);
-
+        // console.log(process.env.NODE_ENV);
     },
     methods: {
         ...mapActions(['countUp']),
